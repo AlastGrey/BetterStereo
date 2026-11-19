@@ -5,6 +5,7 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Mitochondria.Resources;
 using Mitochondria.Resources.FFmpeg;
+using Reactor;
 using Reactor.Utilities;
 using Stereo.Modules;
 using Stereo.Modules.State;
@@ -13,6 +14,7 @@ namespace Stereo;
 
 [BepInAutoPlugin]
 [BepInProcess("Among Us.exe")]
+[BepInDependency(ReactorPlugin.Id, "2.5.1")]
 [BepInDependency(MitochondriaResourcesPlugin.Id)]
 [BepInDependency(MitochondriaResourcesFFmpegPlugin.Id)]
 public partial class StereoPlugin : BasePlugin

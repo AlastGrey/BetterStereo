@@ -12,6 +12,11 @@ Among Us custom lobby music mod.
 3. Download the mod.
 4. Put all the downloaded files in your `AmongUs/BepInEx/plugins` folder.
 
+## Compatibility
+
+This build targets Among Us 19.0 (2026.9.29). It requires Reactor **2.5.1** or newer and Mitochondria 0.14.0.
+Older Reactor versions crash during startup on 19.0 with a `TypeLoadException` for `AmongUsClient`.
+
 ## Usage
 
 1. Start the game with the mod.
