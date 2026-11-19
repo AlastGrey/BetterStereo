@@ -1,6 +1,6 @@
-# Stereo
+# BetterStereo
 
-Among Us custom lobby music mod.
+A fork of Stereo, an Among Us custom lobby music mod. Updated to work for newer versions.
 
 ![Stereo Screenshot of "Some Generic Music Title" playing](./images/StereoScreenshot.png)
 
