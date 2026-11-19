@@ -14,8 +14,7 @@ Among Us custom lobby music mod.
 
 ## Compatibility
 
-This build targets Among Us 19.0 (2026.9.29). It requires Reactor **2.5.1** or newer and Mitochondria 0.14.0.
-Older Reactor versions crash during startup on 19.0 with a `TypeLoadException` for `AmongUsClient`.
+This build targets Among Us 19.0 (2026.9.29) and above. It requires Reactor **2.5.1** or newer and Mitochondria 0.14.0.
 
 ## Usage
 
