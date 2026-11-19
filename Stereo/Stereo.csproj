@@ -23,8 +23,11 @@
         <PackageReference Include="Mitochondria.Resources.FFmpeg" Version="0.14.0" />
         <PackageReference Include="Mitochondria.Resources.Primitives" Version="0.14.0" />
 
+        <!-- Mitochondria 0.14.0 pulls Reactor 2.3.1 transitively; exclude its assets so compilation uses the vendored 2.5.1 assembly. -->
+        <PackageReference Include="Reactor" Version="2.3.1" PrivateAssets="all" ExcludeAssets="all" />
+
         <Reference Include="Reactor">
-            <HintPath>$(MSBuildThisFileDirectory)..\libs\Reactor.dll</HintPath>
+            <HintPath>$(MSBuildThisFileDirectory)../libs/Reactor.dll</HintPath>
             <Private>false</Private>
         </Reference>
 
@@ -42,6 +45,14 @@
     <ItemGroup>
         <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
+
+    <Target Name="VerifyVendoredReactor" BeforeTargets="ResolveAssemblyReferences">
+        <GetAssemblyIdentity AssemblyFiles="$(MSBuildThisFileDirectory)../libs/Reactor.dll">
+            <Output TaskParameter="Assemblies" ItemName="VendoredReactorIdentity" />
+        </GetAssemblyIdentity>
+        <Error Condition="'%(VendoredReactorIdentity.Version)' != '2.5.1.0'"
+               Text="libs/Reactor.dll must be Reactor 2.5.1 (2.5.1.0), found %(VendoredReactorIdentity.Version)." />
+    </Target>
 
     <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(AmongUs)/BepInEx/plugins/" UseSymboliclinksIfPossible="true" />
