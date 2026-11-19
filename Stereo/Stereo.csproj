@@ -54,6 +54,16 @@
                Text="libs/Reactor.dll must be Reactor 2.5.1 (2.5.1.0), found %(VendoredReactorIdentity.Version)." />
     </Target>
 
+    <Target Name="VerifyResolvedReactor" AfterTargets="ResolveAssemblyReferences">
+        <ItemGroup>
+            <ResolvedVendoredReactor Include="@(ReferencePath)" Condition="'%(Filename)' == 'Reactor'" />
+        </ItemGroup>
+        <Error Condition="'@(ResolvedVendoredReactor->Count())' != '1'"
+               Text="Expected exactly one Reactor reference, found @(ResolvedVendoredReactor->Count())." />
+        <Error Condition="'%(ResolvedVendoredReactor.NuGetPackageId)' != ''"
+               Text="Reactor resolved from NuGet package %(ResolvedVendoredReactor.NuGetPackageId) %(ResolvedVendoredReactor.NuGetPackageVersion); libs/Reactor.dll must be the compile reference." />
+    </Target>
+
     <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(AmongUs)/BepInEx/plugins/" UseSymboliclinksIfPossible="true" />
     </Target>
